@@ -10,12 +10,12 @@ import com.devProgram.javaCoreAssessment.enums.CategoryEnum;
 import com.devProgram.javaCoreAssessment.repositories.ProductRepository;
 
 @Service
-public class CrudProductService {
+public class ProductService {
 
 	private Boolean system = true;
 	private final ProductRepository productRepository;
 
-	public CrudProductService(ProductRepository productRepository) {
+	public ProductService(ProductRepository productRepository) {
 		this.productRepository = productRepository;
 	}
 
@@ -35,6 +35,10 @@ public class CrudProductService {
 				break;
 			case 2:
 				list(scanner);
+				break;
+			case 3:
+				search(scanner);
+				break;
 			default:
 				system = false;
 				break;
@@ -60,23 +64,31 @@ public class CrudProductService {
         System.out.println("Enter the product category");
         String category = scanner.next();
         
+      
 		Product product = new Product();
 		product.setName(name);
 		product.setPrice(price);
 		product.setDescription(description);
 		product.setQuantity(quantity);
 		product.setCategory(category.equals(CategoryEnum.MONITORS.name()) ? CategoryEnum.MONITORS : category.equals(CategoryEnum.COMPUTER_ACCESSORIES.name()) ? CategoryEnum.COMPUTER_ACCESSORIES : null);
-		
+        
+        
 		productRepository.save(product);
 		System.out.println("Saved");
 	}
 	
 	private void list(Scanner scanner) {
 		System.out.println("\nProducts saved:");
-		//System.out.println(productRepository.findAll());
 		productRepository.findAll().forEach(product -> System.out.println("\n- " + product.getName()));
 		
 	}
 
 
+	private void search(Scanner scanner) {
+		System.out.println("\nEnter the name of the product:");
+		String name = scanner.next();
+		
+		System.out.println("\nResult:");
+		productRepository.searchPriceAndDescriptionByName(name).forEach(product -> System.out.println("\nProduct: "+ product.getName() + "\nPrice: " + product.getPrice() + "\nDescription: " + product.getDescription()));
+	}
 }
