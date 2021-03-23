@@ -22,7 +22,7 @@ public class CrudProductService {
 	public void initial(Scanner scanner) {
 		while (system) {
 			System.out.println("\nWhat action of product would you like to do?");
-			System.out.println("0 - Exit");
+			System.out.println("0 - Main Menu");
 			System.out.println("1 - Save");
 			System.out.println("2 - List");
 			System.out.println("3 - Search");
@@ -72,7 +72,9 @@ public class CrudProductService {
 	}
 	
 	private void list(Scanner scanner) {
-		
+		System.out.println("\nProducts saved:");
+		//System.out.println(productRepository.findAll());
+		productRepository.findAll().forEach(product -> System.out.println("\n- " + product.getName()));
 		
 	}
 
