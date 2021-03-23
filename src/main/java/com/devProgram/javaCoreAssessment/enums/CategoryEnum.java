@@ -2,5 +2,6 @@ package com.devProgram.javaCoreAssessment.enums;
 
 public enum CategoryEnum {
 	MONITORS,
-	COMPUTER_ACCESSORIES;
+	COMPUTER_ACCESSORIES,
+	OTHER;
 }
