@@ -37,6 +37,20 @@ public class Product {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "PRO_CATEGORY", nullable = false)
 	private CategoryEnum category;
+	
+	public Product() {
+		
+	}
+
+	public Product(Long id, String name, BigDecimal price, String description, Integer quantity,
+			CategoryEnum category) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.quantity = quantity;
+		this.category = category;
+	}
 
 	public Long getId() {
 		return id;
