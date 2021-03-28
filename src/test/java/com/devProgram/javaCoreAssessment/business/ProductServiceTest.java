@@ -31,9 +31,9 @@ class ProductServiceTest {
 	public void listAllProducts_basic() {
 		//Given
 		List<Product> products = new ArrayList<Product>();
-		products.add(new Product(new Long(1), "Daaa", new BigDecimal(100.00), "desc Daaa", 30, CategoryEnum.OTHER));
-		products.add(new Product(new Long(2), "D", new BigDecimal(200.99), "desc D", 40, CategoryEnum.MONITORS));
-		
+//		products.add(new Product(new Long(1), "Daaa", new BigDecimal(100.00), "desc Daaa", 30, CategoryEnum.OTHER));
+//		products.add(new Product(new Long(2), "D", new BigDecimal(200.99), "desc D", 40, CategoryEnum.MONITORS));
+//		
 		//When
 		when(repository.searchPriceAndDescriptionByName("d")).thenReturn(products);
 		
