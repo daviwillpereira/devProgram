@@ -4,18 +4,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "SUB_COLLECTION")
@@ -26,14 +21,14 @@ public class SubCollection {
 	@Column(name = "SUB_COL_ID", nullable = false)
 	private Long id;
 
+	@Column(name = "COL_NAME", nullable = false)
+	private String name;
+
 	@ManyToOne
 	@JoinColumn(name = "COL_ID", nullable = false)
 	private Collection collection;
-
-	@Fetch(FetchMode.SELECT)
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "SUB_COL_PRODUCTS", joinColumns = {
-			@JoinColumn(name = "SUB_COL_ID") }, inverseJoinColumns = { @JoinColumn(name = "PRO_ID") })
+	
+	@ManyToMany(mappedBy = "subCollections")
 	private List<Product> products;
 
 	public Long getId() {
@@ -42,6 +37,14 @@ public class SubCollection {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Collection getCollection() {
@@ -59,5 +62,5 @@ public class SubCollection {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-	
+
 }

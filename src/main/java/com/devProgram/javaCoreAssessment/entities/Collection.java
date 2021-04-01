@@ -2,13 +2,20 @@ package com.devProgram.javaCoreAssessment.entities;
 
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "COLLECTION")
@@ -25,9 +32,14 @@ public class Collection {
 	@Column(name = "COL_DESCRIPTION", nullable = false)
 	private String description;
 
-	@Column(name = "COL_KEYWORDS", nullable = false)
-	private String keywords;
+	@Size(max = 6)
+	@ElementCollection
+	@CollectionTable(name = "COL_KEYWORDS",
+					 joinColumns = @JoinColumn(name = "COL_ID"))
+	@Column(name = "KEYWORDS", nullable = true)
+	private List<String> keywords;
 
+	@Fetch(FetchMode.JOIN)
 	@OneToMany(mappedBy = "collection")
 	private List<SubCollection> subCollection;
 
@@ -55,11 +67,11 @@ public class Collection {
 		this.description = description;
 	}
 
-	public String getKeywords() {
+	public List<String> getKeywords() {
 		return keywords;
 	}
 
-	public void setKeywords(String keywords) {
+	public void setKeywords(List<String> keywords) {
 		this.keywords = keywords;
 	}
 

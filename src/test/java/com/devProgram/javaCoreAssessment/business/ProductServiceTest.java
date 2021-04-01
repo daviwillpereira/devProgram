@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.devProgram.javaCoreAssessment.entities.Product;
-import com.devProgram.javaCoreAssessment.enums.CategoryEnum;
+import com.devProgram.javaCoreAssessment.enums.VariantEnum;
 import com.devProgram.javaCoreAssessment.repositories.ProductRepository;
 import com.devProgram.javaCoreAssessment.services.ProductService;
 
@@ -32,8 +32,7 @@ class ProductServiceTest {
 		//Given
 		List<Product> products = new ArrayList<Product>();
 //		products.add(new Product(new Long(1), "Daaa", new BigDecimal(100.00), "desc Daaa", 30, CategoryEnum.OTHER));
-//		products.add(new Product(new Long(2), "D", new BigDecimal(200.99), "desc D", 40, CategoryEnum.MONITORS));
-//		
+		
 		//When
 		when(repository.searchPriceAndDescriptionByName("d")).thenReturn(products);
 		

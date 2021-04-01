@@ -4,18 +4,21 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
-import com.devProgram.javaCoreAssessment.enums.CategoryEnum;
+import com.devProgram.javaCoreAssessment.enums.VariantEnum;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -26,13 +29,19 @@ public class Product {
 	@Column(name = "PRO_ID", nullable = false)
 	private Long id;
 	
-    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
-    private List<SubCollection> subCollection;
+	@Size(max = 1)
+    @ManyToMany
+	@JoinTable(name = "PRODUCT_SUB_COLLECTION", 
+	   joinColumns = { @JoinColumn(name = "PRO_ID") }, 
+	   inverseJoinColumns = { @JoinColumn(name = "SUB_COL_ID") })
+    private List<SubCollection> subCollections;
 
 	@Column(name = "PRO_NAME", nullable = false)
 	private String name;
 	
+	@Size(max = 5)
 	@Lob
+	@ElementCollection
 	@Column(name = "PRO_IMAGES", nullable = true)
 	private List<byte[]> images;
 
@@ -46,23 +55,23 @@ public class Product {
 	private Integer quantity;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "PRO_CATEGORY", nullable = false)
-	private CategoryEnum category;
+	@Column(name = "PRO_VARIANT", nullable = true)
+	private VariantEnum variant;
 
 	public Product() {
 		
 	}
 
-	public Product(Long id, List<SubCollection> subCollection, String name, List<byte[]> images, BigDecimal price, String description, Integer quantity,
-			CategoryEnum category) {
+	public Product(Long id, List<SubCollection> subCollections, String name, List<byte[]> images, BigDecimal price, String description, Integer quantity,
+			VariantEnum variant) {
 		this.id = id;
-		this.subCollection = subCollection;
+		this.subCollections = subCollections;
 		this.name = name;
 		this.images = images;
 		this.price = price;
 		this.description = description;
 		this.quantity = quantity;
-		this.category = category;
+		this.variant = variant;
 	}
 
 	public Long getId() {
@@ -73,12 +82,12 @@ public class Product {
 		this.id = id;
 	}
 	
-	public List<SubCollection> getSubCollection() {
-		return subCollection;
+	public List<SubCollection> getSubCollections() {
+		return subCollections;
 	}
 
-	public void setSubCollection(List<SubCollection> subCollection) {
-		this.subCollection = subCollection;
+	public void setSubCollections(List<SubCollection> subCollections) {
+		this.subCollections = subCollections;
 	}
 
 	public String getName() {
@@ -121,12 +130,12 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public CategoryEnum getCategory() {
-		return category;
+	public VariantEnum getVariant() {
+		return variant;
 	}
 
-	public void setCategory(CategoryEnum category) {
-		this.category = category;
+	public void setVariant(VariantEnum category) {
+		this.variant = category;
 	}
 
 }

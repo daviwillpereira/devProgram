@@ -1,4 +1,4 @@
-package com.devProgram.javaCoreAssessment;
+package com.devProgram.javaCoreAssessment.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
@@ -10,8 +10,6 @@ import java.io.InputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-
-import org.apache.tomcat.util.codec.binary.Base64;
 
 public class ImageUtils {
 	
@@ -57,26 +55,16 @@ public class ImageUtils {
 
     }
 
-   public static void popUpProductImage(byte[] image) throws IOException {
-
-       // BufferedImage bi = ImageIO.read(new File("/Users/daviwillpereira/Desktop/gil.png"));
+   public static void main(String args[]) throws IOException {
 
         // convert BufferedImage to byte[]
-        byte[] bytes = convertImageByte(new URL("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tudocelular.com%2Fcuriosidade%2Fnoticias%2Fn118802%2Fnicolas-cage-midias-sociais.html&psig=AOvVaw0S9Icw3iw-XsIrxt1VJ-n0&ust=1616968270905000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCICW_6660e8CFQAAAAAdAAAAABAD"));
-
-        //encode the byte array for display purpose only, optional
-        String bytesBase64 = Base64.encodeBase64String(bytes);
-        
-        System.out.println(bytesBase64);
-
-        // decode byte[] from the encoded string
-        byte[] bytesFromDecode = Base64.decodeBase64(bytesBase64);
+        byte[] bytes = convertImageByte(new URL("https://s-media-cache-ak0.pinimg.com/236x/ac/bb/d4/acbbd49b22b8c556979418f6618a35fd.jpg"));
 
         // convert the byte[] back to BufferedImage
-        BufferedImage newBi = toBufferedImage(bytesFromDecode);
+        BufferedImage newBi = toBufferedImage(bytes);
 
-        // save it somewhere
-        ImageIO.write(newBi, "png", new File("/Users/daviwillpereira/Desktop/result.png"));
+        // save it 
+        ImageIO.write(newBi, "png", new File("C:\\"));
 
     }
 }

@@ -1,5 +1,6 @@
 package com.devProgram.javaCoreAssessment.services;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class ProductService {
 	@Autowired
 	private ProductActions productActions;
 
-	public void productManagerMenu(Scanner scanner) {
+	public void productManagerMenu(Scanner scanner) throws IOException {
 		
 		system = true;
 		
@@ -25,8 +26,8 @@ public class ProductService {
 
 	}
 
-	public void displayProductOptionsMenu(Scanner scanner) {
-		System.out.println("\nWhat action of product would you like to conduct?");
+	public void displayProductOptionsMenu(Scanner scanner) throws IOException {
+		System.out.println("\nWhat action of product would you like to manage?");
 		System.out.println("0 - Main Menu");
 		System.out.println("1 - Save");
 		System.out.println("2 - List");

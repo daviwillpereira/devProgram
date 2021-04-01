@@ -1,4 +1,4 @@
-package com.devProgram.javaCoreAssessment;
+package com.devProgram.javaCoreAssessment.utils;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -27,7 +27,7 @@ public class ProductPanel extends JPanel {
 
 	public ProductPanel() {
 
-		setSize(450, 150);
+		setSize(600, 600);
 		setVisible(true);
 
 	}
@@ -71,7 +71,7 @@ public class ProductPanel extends JPanel {
 
 		try {
 			imgByte = convertImageByte(new URL(
-					"https://www.google.com/url?sa=i&url=https%3A%2F%2Fmedium.com%2Fcode-prestige%2Ftudo-o-que-voc%25C3%25AA-precisa-saber-sobre-as-novidades-do-java-10-d5e781c34a3&psig=AOvVaw3RFA92I9ldrcmS1tPo7MUu&ust=1616963155164000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLjmqaqn0e8CFQAAAAAdAAAAABAN.png"));
+					"https://s-media-cache-ak0.pinimg.com/236x/ac/bb/d4/acbbd49b22b8c556979418f6618a35fd.jpg"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -84,7 +84,7 @@ public class ProductPanel extends JPanel {
 			e.printStackTrace();
 		}
 
-		graphics.drawImage(bufferedImg, 0, 0, 450, 150, this);
+		graphics.drawImage(bufferedImg, 0, 0, 600, 600, this);
 	}
 
 	public static void main(String[] args) {
@@ -94,7 +94,7 @@ public class ProductPanel extends JPanel {
 			@Override
 			public void run() {
 				JFrame frame = new JFrame();
-				frame.setSize(450, 150);
+				frame.setSize(600, 600);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.add(new ProductPanel());
