@@ -1,6 +1,5 @@
 package com.devProgram.javaCoreAssessment.services.actions;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -118,9 +117,13 @@ public class ProductActions {
 
 							if (imgCount <= 5) {
 								byte[] byteImage = ImageUtils.convertImageByte(new URL(image));
-								BufferedImage validatedImage = ImageUtils.toBufferedImage(byteImage);
-								if (validatedImage != null) {
+								if (byteImage != null) {
+									ImageUtils.toBufferedImage(byteImage);
 									imgList.add(byteImage);
+								} else {
+									System.err.println(
+											"\nMake sure the URL you provided is linking to a valid image file format such as jpg, png, bmp!\n");
+									imgCount--;
 								}
 							} else {
 								System.err.println("Limit of images exceeded! Please continue...\n");
@@ -129,13 +132,11 @@ public class ProductActions {
 							}
 
 						} catch (IOException e) {
-							e.getMessage();
-							System.err.println(
-									"Make sure the URL you provided is linking to a valid image file format such as jpg, png, bmp!\n");
-							imgCount--;
+							e.getStackTrace();
 						}
 
-						System.out.println("\nAdd a image to this product( " + imgCount + " of 5 ) " + "? [ y / n ]");
+						System.out.println(
+								"\nTry to add a image to this product again( " + imgCount + " of 5 ) " + "? [ y / n ]");
 						yesOrNo = scanner.nextLine();
 						if (yesOrNo.equals("y")) {
 							insertImage = true;
