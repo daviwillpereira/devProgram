@@ -132,7 +132,7 @@ public class ProductActions {
 							}
 
 						} catch (IOException e) {
-							e.getStackTrace();
+							throw new RuntimeException(e);
 						}
 
 						System.out.println(

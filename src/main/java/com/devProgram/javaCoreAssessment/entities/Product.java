@@ -138,4 +138,69 @@ public class Product {
 		this.variant = category;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((images == null) ? 0 : images.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
+		result = prime * result + ((subCollections == null) ? 0 : subCollections.hashCode());
+		result = prime * result + ((variant == null) ? 0 : variant.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (images == null) {
+			if (other.images != null)
+				return false;
+		} else if (!images.equals(other.images))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
+			return false;
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
+			return false;
+		if (subCollections == null) {
+			if (other.subCollections != null)
+				return false;
+		} else if (!subCollections.equals(other.subCollections))
+			return false;
+		if (variant != other.variant)
+			return false;
+		return true;
+	}
+
+	
 }
